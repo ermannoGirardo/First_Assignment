@@ -1,0 +1,77 @@
+\hypertarget{position__server_8cpp}{}\section{src/position\+\_\+server.cpp File Reference}
+\label{position__server_8cpp}\index{src/position\+\_\+server.\+cpp@{src/position\+\_\+server.\+cpp}}
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}my\+\_\+assignment\+\_\+1/\+Target\+\_\+\+Position.\+h\char`\"{}}\\*
+Include dependency graph for position\+\_\+server.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{position__server_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{position__server_8cpp_a3f06f0e9f7beb8214afeea0b18ef8377}{min}~-\/6.\+0
+\item 
+\#define \hyperlink{position__server_8cpp_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}~+6.\+0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{position__server_8cpp_a8b8775a486a432617442ad99d66bd482}{target\+\_\+pos} (my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position\+::\+Request \&req, my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position\+::\+Response \&res)
+\item 
+int \hyperlink{position__server_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}!max@{max}}
+\index{max@{max}!position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}}
+\subsubsection[{\texorpdfstring{max}{max}}]{\setlength{\rightskip}{0pt plus 5cm}\#define max~+6.\+0}\hypertarget{position__server_8cpp_a2e1da8593b0244d8e9e3b84ef7b35e73}{}\label{position__server_8cpp_a2e1da8593b0244d8e9e3b84ef7b35e73}
+\index{position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}!min@{min}}
+\index{min@{min}!position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}}
+\subsubsection[{\texorpdfstring{min}{min}}]{\setlength{\rightskip}{0pt plus 5cm}\#define min~-\/6.\+0}\hypertarget{position__server_8cpp_a3f06f0e9f7beb8214afeea0b18ef8377}{}\label{position__server_8cpp_a3f06f0e9f7beb8214afeea0b18ef8377}
+Define constants to fix the limits of the domain 
+
+\subsection{Function Documentation}
+\index{position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}!main@{main}}
+\index{main@{main}!position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{position__server_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{position__server_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+/\+Main function\+:
+
+/\+Parameters\+:
+
+int argc, char $\ast$$\ast$argv are mandatory for cpp files
+
+/\+Comments about the code\+:
+
+ros\+::init--$>$initialisation of the node position\+\_\+server
+
+ros\+::\+Node\+Handle n --$>$ set-\/up node\+Handle
+
+ros\+::\+Service\+Server service= n.\+advertise\+Service(\char`\"{}robot/target\+\_\+pos\char`\"{},target\+\_\+pos) --$>$ define server and specify function call\+Back
+
+ros\+::spin()--$>$ blocks the main thread from exiting until R\+OS invokes a shutdown (for example Ctrl+C) \index{position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}!target\+\_\+pos@{target\+\_\+pos}}
+\index{target\+\_\+pos@{target\+\_\+pos}!position\+\_\+server.\+cpp@{position\+\_\+server.\+cpp}}
+\subsubsection[{\texorpdfstring{target\+\_\+pos(my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position\+::\+Request \&req, my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position\+::\+Response \&res)}{target_pos(my_assignment_1::Target_Position::Request &req, my_assignment_1::Target_Position::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool target\+\_\+pos (
+\begin{DoxyParamCaption}
+\item[{my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position\+::\+Request \&}]{req, }
+\item[{my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{position__server_8cpp_a8b8775a486a432617442ad99d66bd482}{}\label{position__server_8cpp_a8b8775a486a432617442ad99d66bd482}
+/\+Function call\+Back executed when client calls
+
+/\+Parameters\+: an instance for the request(not used) and an instance for the reply of the srv Target\+\_\+\+Position
+
+/\+Comments about the code\+: \begin{DoxyVerb}        res.x=min+(rand()/(RAND_MAX/(max-min)))--> set the x component randomly between (-6;6)
+
+        res.y=min+(rand()/(RAND_MAX/(max-min))) --> set the y component randomly between (-6;6)
+
+        ROS_INFO --> print on screen string between ""\end{DoxyVerb}
+ 

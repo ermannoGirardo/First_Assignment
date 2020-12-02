@@ -1,0 +1,105 @@
+\hypertarget{robot__controller_8cpp}{}\section{src/robot\+\_\+controller.cpp File Reference}
+\label{robot__controller_8cpp}\index{src/robot\+\_\+controller.\+cpp@{src/robot\+\_\+controller.\+cpp}}
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stdlib.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nav\+\_\+msgs/\+Odometry.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Twist.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}my\+\_\+assignment\+\_\+1/\+Target\+\_\+\+Position.\+h\char`\"{}}\\*
+Include dependency graph for robot\+\_\+controller.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{robot__controller_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{robot__controller_8cpp_aa816ab3cd347f9fb8805f6296052c9c3}{alpha}~5
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{robot__controller_8cpp_aab6e381bffc34921244a29ec0538ba64}{position\+Callback} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\item 
+int \hyperlink{robot__controller_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Publisher \hyperlink{robot__controller_8cpp_a350594df3e8f6948c8462edfd41ce086}{pub}
+\item 
+ros\+::\+Service\+Client \hyperlink{robot__controller_8cpp_a17bcd065930a8a7f9f194078d9977268}{client}
+\item 
+my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position \hyperlink{robot__controller_8cpp_a46f6d779704275ca356cb52ef56b10a9}{target\+\_\+pos}
+\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{robot__controller_8cpp_af113e9b4ca3af68972dfd3df47898c83}{vel}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}!alpha@{alpha}}
+\index{alpha@{alpha}!robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}}
+\subsubsection[{\texorpdfstring{alpha}{alpha}}]{\setlength{\rightskip}{0pt plus 5cm}\#define alpha~5}\hypertarget{robot__controller_8cpp_aa816ab3cd347f9fb8805f6296052c9c3}{}\label{robot__controller_8cpp_aa816ab3cd347f9fb8805f6296052c9c3}
+Define the constant to set the linear velocity proportional to the distance between the robot and the target 
+
+\subsection{Function Documentation}
+\index{robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}!main@{main}}
+\index{main@{main}!robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{robot__controller_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{robot__controller_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+M\+A\+IN F\+U\+N\+C\+T\+I\+ON
+
+/\+Parameters\+: int argc, char $\ast$$\ast$argv are mandatory for cpp files
+
+/\+Comments about the code\+:
+
+ros\+::init--$>$initialisation of the node robot\+\_\+controller
+
+ros\+::\+Node\+Handle n --$>$ set-\/up node\+Handle
+
+pub=n.\+advertise$<$geometry\+\_\+msgs\+::\+Twist$>$ --$>$ declare publisher and specify the topic
+
+ros\+::\+Subscriber sub=n.\+subscribe(\char`\"{}/odom\char`\"{},1000,position\+Callback) --$>$ define subscriber and specify the function called
+
+client = n.\+service\+Client$<$my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position$>$ --$>$ declare client and specify service type
+
+client.\+call(target\+\_\+pos) --$>$ call manually the first time the service to generate the first random target
+
+ros\+::spin()--$>$ blocks the main thread from exiting until R\+OS invokes a shutdown (for example Ctrl+C) \index{robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}!position\+Callback@{position\+Callback}}
+\index{position\+Callback@{position\+Callback}!robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}}
+\subsubsection[{\texorpdfstring{position\+Callback(const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)}{positionCallback(const nav_msgs::Odometry::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void position\+Callback (
+\begin{DoxyParamCaption}
+\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{robot__controller_8cpp_aab6e381bffc34921244a29ec0538ba64}{}\label{robot__controller_8cpp_aab6e381bffc34921244a29ec0538ba64}
+/\+Function position\+Call\+Back called when subscriber receives the position
+
+/-\/\+Parameter\+:
+
+msg\+: declared as constant pointer of topic Odom (to establish the position of the robot)
+
+/\+The funcion receive the position of the robot\+:
+
+-\/\+If the robot has reached the target spawn new random target
+
+-\/\+Else set linear velocity to reach the raget 
+
+\subsection{Variable Documentation}
+\index{robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}!client@{client}}
+\index{client@{client}!robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}}
+\subsubsection[{\texorpdfstring{client}{client}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Client client}\hypertarget{robot__controller_8cpp_a17bcd065930a8a7f9f194078d9977268}{}\label{robot__controller_8cpp_a17bcd065930a8a7f9f194078d9977268}
+Define Client that will call custom service to spawn random target \index{robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}!pub@{pub}}
+\index{pub@{pub}!robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}}
+\subsubsection[{\texorpdfstring{pub}{pub}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Publisher pub}\hypertarget{robot__controller_8cpp_a350594df3e8f6948c8462edfd41ce086}{}\label{robot__controller_8cpp_a350594df3e8f6948c8462edfd41ce086}
+Define Publisher that will publish velocity of robot on topic /cmd\+\_\+vel \index{robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}!target\+\_\+pos@{target\+\_\+pos}}
+\index{target\+\_\+pos@{target\+\_\+pos}!robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}}
+\subsubsection[{\texorpdfstring{target\+\_\+pos}{target_pos}}]{\setlength{\rightskip}{0pt plus 5cm}my\+\_\+assignment\+\_\+1\+::\+Target\+\_\+\+Position target\+\_\+pos}\hypertarget{robot__controller_8cpp_a46f6d779704275ca356cb52ef56b10a9}{}\label{robot__controller_8cpp_a46f6d779704275ca356cb52ef56b10a9}
+Define as global an instance of service Target\+\_\+\+Position \index{robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}!vel@{vel}}
+\index{vel@{vel}!robot\+\_\+controller.\+cpp@{robot\+\_\+controller.\+cpp}}
+\subsubsection[{\texorpdfstring{vel}{vel}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist vel}\hypertarget{robot__controller_8cpp_af113e9b4ca3af68972dfd3df47898c83}{}\label{robot__controller_8cpp_af113e9b4ca3af68972dfd3df47898c83}
+Define as global an instance of the topic /cmd\+\_\+vel 
